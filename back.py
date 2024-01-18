@@ -4,6 +4,9 @@ import db
 
 importedList: list[List] = db.start()
 
+def __main__():
+    #put tests here
+    return
 
     
 def removeItem(listing1: List, item: Item):    #Remove an item from the list
