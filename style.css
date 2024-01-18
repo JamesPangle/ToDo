@@ -60,7 +60,7 @@
     } 
     #mydiv4 {
       position: absolute;
-      z-index: 9;
+       z-index: 9;
       background-color: #f1f1f1;
       text-align: center;
       border: 1px solid #ff7300;

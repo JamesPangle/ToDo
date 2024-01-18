@@ -182,8 +182,8 @@ btnClass.addEventListener('click', () => {
 function removeNameFromTheList(e) {
     e.parentElement.remove()
 }
-var btnClass = document.querySelector('#addItem2')
-var listOfItems2 = document.querySelector('#listOfItems2')
+var btnClass = document.querySelector('#addItem')
+var listOfItems = document.querySelector('#listOfItems2')
 btnClass.addEventListener('click', () => {
     var actualName = givenName.value
     if (actualName.length != 0) {

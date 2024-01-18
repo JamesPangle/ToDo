@@ -26,26 +26,26 @@ def start() -> list:    #  Connect to Database
                 listing.addItem(Item(item[0], item[1], item[2], item[3], item[4]))
     return combined
 def addItem(item: Item) -> int:          #Add an Item to the database
-    cur.execute("INSERT INTO Items(list_id,desc,due,completed) VALUES (%s,%s,%s,%s) RETURNING item_id;",(item.getListId,item.getDesc, item.getDue, item.getCompleted))
+    cur.execute("INSERT INTO Items(id,desc,due,completed) VALUES (%s,%s,%s,%s) RETURNING id;",(item.getListId,item.getDesc, item.getDue, item.getCompleted))
     out = cur.fetchall()[0][0]
     return out
 
 def addList(listing: List) -> int:          #Add a List to the database
-    cur.execute("INSERT INTO Lists(list_name) VALUES (%s) RETURNING list_id;",(listing.getName()))
+    cur.execute("INSERT INTO Lists(name) VALUES (%s) RETURNING id;",(listing.getName()))
     out = cur.fetchall()[0][0]
     return out
 
 def deleteList(listing: List) -> None:   #Delete a List from the database
-    cur.execute("DELETE from Lists WHERE list_id = %s;",str(listing.getId()))
+    cur.execute("DELETE from Lists WHERE id = %s;",str(listing.getId()))
     
 def deleteItem(listing:List, item: Item) -> None:   #Delete an Item from the database
-    cur.execute("DELETE from Items WHERE item_id = %s AND list_id = %s;",(str(item.getItemId()), str(item.getListId())))
+    cur.execute("DELETE from Items WHERE id = %s AND list_id = %s;",(str(item.getItemId()), str(item.getListId())))
     
 def editList(listing: List) -> None:     #Edit a List from the database
-    cur.execute("UPDATE Lists SET list_name = %s WHERE listing_id = %s;",(listing.getName(),listing.getId()))
+    cur.execute("UPDATE Lists SET name = %s WHERE id = %s;",(listing.getName(),listing.getId()))
     
 def editItem(listing:List, item: Item) -> None:     #Edit an  Item from the database
-    cur.execute("UPDATE Items SET list_id = %s,descr = %s,due = %s,completed = %s WHERE item_id = %s AND list_id = %s;", (item.getListId(),item.getDesc(),item.getDue(),item.getCompleted(), item.getItemId, item.getListId))
+    cur.execute("UPDATE Items SET list_id = %s,descr = %s,due = %s,completed = %s WHERE id = %s AND list_id = %s;", (item.getListId(),item.getDesc(),item.getDue(),item.getCompleted(), item.getItemId, item.getListId))
     
 def close() -> None:    #Close the database
     cur.close()
