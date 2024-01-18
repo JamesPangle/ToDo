@@ -1,3 +1,37 @@
+var givenName = document.querySelector('#name')
+var btnClass = document.querySelector('#addItem')
+var listOfItems = document.querySelector('#listOfItems')
+btnClass.addEventListener('click', () => {
+    var actualName = givenName.value
+    if (actualName.length != 0) {
+        var createAnHTMLList = `<li class=""><div>${actualName}</div><button onclick="removeNameFromTheList(this)">Remove Name</button>`
+        listOfItems.innerHTML += createAnHTMLList
+        givenName.value = ''
+        givenName.classList.remove('red')
+    } else
+    {
+        givenName.classList.add('red')
+    }
+})
+var givenName2 = document.querySelector('#name2')
+var btnClass = document.querySelector('#addItem2')
+var listOfItems2 = document.querySelector('#listOfItems2')
+btnClass.addEventListener('click', () => {
+    var actualName2 = givenName2.value
+    if (actualName2.length != 0) {
+        var createAnHTMLList2 = `<li class=""><div>${actualName2}</div><button onclick="removeNameFromTheList2(this)">Remove Name</button>`
+        listOfItems2.innerHTML += createAnHTMLList2
+        givenName2.value = ''
+        givenName.classList.remove('red')
+    } else
+    {
+        givenName.classList.add('red')
+    }
+})
+
+function removeNameFromTheList2(e) {
+    e.parentElement.remove()
+}
 
 dragElement(document.getElementById("mydiv"));
    function dragElement(elmnt) {
@@ -164,39 +198,4 @@ dragElement(document.getElementById("mydiv4"));
     document.onmousemove = null;
   }
 } 
-var btnClass = document.querySelector('#addItem')
-var listOfItems = document.querySelector('#listOfItems')
-btnClass.addEventListener('click', () => {
-    var actualName = givenName.value
-    if (actualName.length != 0) {
-        var createAnHTMLList = `<li class=""><div>${actualName}</div><button
-        onclick="removeNameFromTheList(this)">Remove Name</button>`
-        listOfItems.innerHTML += createAnHTMLList
-        givenName.value = ''
-        givenName.classList.remove('red')
-    } else
-    {
-        givenName.classList.add('red')
-    }
-})
-function removeNameFromTheList(e) {
-    e.parentElement.remove()
-}
-var btnClass = document.querySelector('#addItem')
-var listOfItems = document.querySelector('#listOfItems2')
-btnClass.addEventListener('click', () => {
-    var actualName = givenName.value
-    if (actualName.length != 0) {
-        var createAnHTMLList = `<li class=""><div>${actualName}</div><button
-        onclick="removeNameFromTheList(this)">Remove Name</button>`
-        listOfItems.innerHTML += createAnHTMLList
-        givenName.value = ''
-        givenName.classList.remove('red')
-    } else
-    {
-        givenName.classList.add('red')
-    }
-})
-function removeNameFromTheList(e) {
-    e.parentElement.remove()
-}
+
