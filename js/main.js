@@ -19,17 +19,16 @@ var listOfItems2 = document.querySelector('#listOfItems2')
 btnClass.addEventListener('click', () => {
     var actualName2 = givenName2.value
     if (actualName2.length != 0) {
-        var createAnHTMLList2 = `<li class=""><div>${actualName2}</div><button onclick="removeNameFromTheList2(this)">Remove Name</button>`
+        var createAnHTMLList2 = `<li class=""><div>${actualName2}</div><button onclick="removeNameFromTheList(this)">Remove Name</button>`
         listOfItems2.innerHTML += createAnHTMLList2
         givenName2.value = ''
-        givenName.classList.remove('red')
+        givenName2.classList.remove('red')
     } else
     {
-        givenName.classList.add('red')
+        givenName2.classList.add('red')
     }
 })
-
-function removeNameFromTheList2(e) {
+function removeNameFromTheList(e) {
     e.parentElement.remove()
 }
 

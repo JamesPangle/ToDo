@@ -24,7 +24,6 @@ class List:
         
     def addItem(self, item: Item):
         self.items.append(item)
-        print(f"Added an item to {self.getName}.")
         
     def removeItem(self, item: Item):
         ind = -1
@@ -34,7 +33,6 @@ class List:
                 break
         if ind != -1:
             self.items.pop(ind)
-            print(f"Removed an item from {self.getName}.")
     
     def setItem(self, items: list[Item]):
         self.items = items
