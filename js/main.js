@@ -182,3 +182,21 @@ btnClass.addEventListener('click', () => {
 function removeNameFromTheList(e) {
     e.parentElement.remove()
 }
+var btnClass = document.querySelector('#addItem2')
+var listOfItems2 = document.querySelector('#listOfItems2')
+btnClass.addEventListener('click', () => {
+    var actualName = givenName.value
+    if (actualName.length != 0) {
+        var createAnHTMLList = `<li class=""><div>${actualName}</div><button
+        onclick="removeNameFromTheList(this)">Remove Name</button>`
+        listOfItems.innerHTML += createAnHTMLList
+        givenName.value = ''
+        givenName.classList.remove('red')
+    } else
+    {
+        givenName.classList.add('red')
+    }
+})
+function removeNameFromTheList(e) {
+    e.parentElement.remove()
+}
