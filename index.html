@@ -1,100 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-    body {
-        margin: 0;
-        min-width: auto;
-    }
-    *{
-        box-sizing: border-box;
-    }
-    ul {
-        margin: 0;
-        padding:  0;;
-    }
-    ul li {
-        cursor: pointer;
-        position: relative;
-        padding: 12px 8px 12px 40px;
-        list-style-type: circle;
-        background: #324664;
-        font-size: 25px;
-        transition: 0.5s;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-    ul li:nth-child(odd){
-        background: #fffbf9;
-    }
-    ul li:hover{
-        background: #f99658;
-    }
-    ul li.checked{
-        background: #888;
-        color: #000;
-        text-decoration: line-through;
-    }
-    ul li.checked::before{
-        content: '';
-        position: fixed;
-        border: #fff;
-        border-style: solid;
-        border-width: 0 2px 2px 0;
-        top: 10px;
-        left: 16px;
-        transform: rotate(45deg);
-        height: 15px;
-        width: 7px;
-    }
-    .close {
-        position: absolute;
-        right: 0;
-        top: 0;
-        padding: 12px 16px 12px 16px;
-    }
-    .close:hover{
-        background-color: #f56221;
-        color: whitesmoke;
-    }
-    .header{
-        background-color: #f98424;
-        padding:30px 40px;
-        color:white;
-        text-align: center;
-    }
-    .header:after{
-        content: "";
-        display: table;
-        clear: both;
-    }
-    input{
-        margin: 0;
-        border: none;
-        border-radius: 0;
-        width: 75%;
-        padding: 20px;
-        float: left;
-        font-size: 16px;
-    }
-    .addBtn{
-        padding:10px;
-        width:25%;
-        background: #d98724;
-        color: #555;
-        float: left;
-        text-align: center;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
-        border-radius: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>To Do List Project</title>
+</head>
+<body>
+    <div class="container">
+        <h1>To do List </h1>
+        <ul id="todo-list"></ul>
+        <input type="text" id="new-task" placeholder="Add a new task">
+    <div class="button">
     
-    </style>
-    </head>
-    <body>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
