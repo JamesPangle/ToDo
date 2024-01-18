@@ -72,8 +72,8 @@
       }
       .wrapper2{
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 70%;
+        left: 70%;
         max-width: 450px;
         width: 100%;
         background: #fff;
@@ -81,13 +81,13 @@
         transform: translate(-50%, -50%);
         box-shadow: 10px 10px 15px rgba(0,0,0,0.06);
       }
-      .wrapper2 header2{
+      .wrapper2 header{
         font-size: 23px;
         font-weight: 500;
         padding: 17px 30px;
         border-bottom: 1px solid #ccc;
       }
-      .wrapper2 header2.active{
+      .wrapper2 header.active{
         cursor: move;
         user-select: none;
       }
