@@ -17,14 +17,14 @@
       z-index: 9;
       background-color: #f1f1f1;
       text-align: center;
-      border: 1px solid #d3d3d3;
+      border: 1px solid #77ff00;
     }
     
     #mydivheader {
-      padding: 10px;
+      padding: 20px;
       cursor: move;
       z-index: 10;
-      background-color: #2196F3;
+      background-color: #77ff00;
       color: #fff;
     } 
     #mydiv2 {
@@ -32,13 +32,43 @@
       z-index: 9;
       background-color: #f1f1f1;
       text-align: center;
-      border: 1px solid #d3d3d3;
+      border: 1px solid #2196F3;
     }
     
     #mydivheader2 {
-      padding: 10px;
+      padding: 20px;
       cursor: move;
       z-index: 10;
       background-color: #2196F3;
+      color: #fff;
+    }
+    #mydiv3 {
+      position: absolute;
+      z-index: 9;
+      background-color: #f1f1f1;
+      text-align: center;
+      border: 1px solid #ff0000;
+    }
+    
+    #mydivheader3 {
+      padding: 20px;
+      cursor: move;
+      z-index: 10;
+      background-color: #ff0000;
+      color: #fff;
+    } 
+    #mydiv4 {
+      position: absolute;
+      z-index: 9;
+      background-color: #f1f1f1;
+      text-align: center;
+      border: 1px solid #ff7300;
+    }
+    
+    #mydivheader4 {
+      padding: 20px;
+      cursor: move;
+      z-index: 10;
+      background-color: #ff7300;
       color: #fff;
     }

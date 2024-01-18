@@ -2,13 +2,8 @@ from Item import Item
 from List import List
 import db
 
-importedList: list[List] = db.start()
+importedList: list[List] = []
 
-def __main__():
-    #put tests here
-    return
-
-    
 def removeItem(listing1: List, item: Item):    #Remove an item from the list
     for listing in importedList:
         if listing1.getId == listing.getId:
@@ -41,6 +36,16 @@ def editItem(listing: List,item: Item):    #Edit an item in a list
         if importedList[i].getId == listing.getId():
             for item1 in importedList[i].getItems():
                 if item.getItemId == item1.getItemId:
+                    db.editItem(listing, item)
                     item1 = item
                     break
                 
+def listAllLists():
+    print("----------------List of TODOs------------------")
+    for i in importedList:
+        print(i)
+    print("-----------------------------------------------")
+
+importedList = db.start() 
+listAllLists()
+db.close()

@@ -42,3 +42,9 @@ class Item:
             
     def setCompleted(self, comp):
         self.completed = comp
+        
+    def __str__(self) -> str:
+        if self.due is None or self.completed:
+            return f"{self.itemId}: {self.desc} | {self.completed}"
+        else:
+            return f"{self.itemId}: {self.desc} | {self.completed} | Due: {self.due}"
