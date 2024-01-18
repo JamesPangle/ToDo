@@ -1,6 +1,6 @@
 from datetime import datetime
 class Item:
-    def __init__(self,itemId,listId,desc,due:datetime,completed):
+    def __init__(self,itemId: int,listId: int,desc: str,due:datetime,completed: bool):
         if itemId is None:
             self.itemId = -1
         else:    
