@@ -38,7 +38,7 @@ class List:
         self.items = items
         
     def __str__(self) -> str:
-        string = f"{self.name}:"
+        string = f"({self.id}){self.name}:"
         for i in self.items:
             string += f"\n\t|-> {str(i)}"
         return string

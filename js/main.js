@@ -1,6 +1,8 @@
 var givenName = document.querySelector('#name')
 var btnClass = document.querySelector('#addItem')
-var listOfItems = document.querySelector('#listOfItems')
+var listOfItems = document.querySelector('#listOfItems','#listOfItems2')
+var givenName2 = document.querySelector('#name2')
+var btnClass = document.querySelector('#addItem2')
 btnClass.addEventListener('click', () => {
     var actualName = givenName.value
     if (actualName.length != 0) {
@@ -8,26 +10,22 @@ btnClass.addEventListener('click', () => {
         listOfItems.innerHTML += createAnHTMLList
         givenName.value = ''
         givenName.classList.remove('red')
-    } else
-    {
-        givenName.classList.add('red')
+    } else if{
+      givenName.classList.add('red')
     }
-})
-var givenName2 = document.querySelector('#name2')
-var btnClass = document.querySelector('#addItem2')
-var listOfItems2 = document.querySelector('#listOfItems2')
-btnClass.addEventListener('click', () => {
-    var actualName2 = givenName2.value
-    if (actualName2.length != 0) {
-        var createAnHTMLList2 = `<li class=""><div>${actualName2}</div><button onclick="removeNameFromTheList(this)">Remove Name</button>`
-        listOfItems2.innerHTML += createAnHTMLList2
-        givenName2.value = ''
-        givenName2.classList.remove('red')
-    } else
-    {
-        givenName2.classList.add('red')
+    else if (actualName.length != 0) {
+      var createAnHTMLList2 = `<li class=""><div>${actualName}</div><button onclick="removeNameFromTheList(this)">Remove Name</button>`
+      listOfItems.innerHTML += createAnHTMLList2
+      givenName2.value = ''
+      givenName2.classList2.remove('red')
     }
+    else if
+    {
+    givenName2.classList2.add('red')
+  }
 })
+
+
 function removeNameFromTheList(e) {
     e.parentElement.remove()
 }
