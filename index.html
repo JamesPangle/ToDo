@@ -12,28 +12,34 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <div class="wrapper">
-    <div id="mydiv">
-      <div class="">        
-      <div id="mydivheader">To do list</div>
-      <input type="text" id="name" name="Add Name......">
-      <button class="btn" id="addItem">Add</button>
-      <ul id="listOfItems"></ul>
-      </div>
-    </div>
-  </div>
-    <div class="wrapper">
-      <div id="mydiv2">
-        <div class="">        
-        <div id="mydivheader2">To do list</div>
-        <input type="text" id="name" name="Add Name......">
-        <button class="btn" id="addItem">Add</button>
-        <ul id="listOfItems2"></ul>
-        </div>
-    </div>
-      </div>
-    
-</script>
+  <div class="draggable" id="draggable1">
+    <div id="draggableHeader1">To do list</div>
+    <input type="text" placeholder="Add Item...">
+    <button onclick="addItem('draggable1')">Add</button>
+    <ul id="listOfItems1"></ul>
+</div>
+
+<div class="draggable" id="draggable2">
+    <div id="draggableHeader2">To do list</div>
+    <input type="text" placeholder="Add Item...">
+    <button onclick="addItem('draggable2')">Add</button>
+    <ul id="listOfItems2"></ul>
+</div>
+
+<div class="draggable" id="draggable3">
+    <div id="draggableHeader3">To do list</div>
+    <input type="text" placeholder="Add Item...">
+    <button onclick="addItem('draggable3')">Add</button>
+    <ul id="listOfItems3"></ul>
+</div>
+
+<div class="draggable" id="draggable4">
+    <div id="draggableHeader4">To do list</div>
+    <input type="text" placeholder="Add Item...">
+    <button onclick="addItem('draggable4')">Add</button>
+    <ul id="listOfItems4"></ul>
+</div>
+
 <script src="js/main.js"></script>
 </body>
 </html>
