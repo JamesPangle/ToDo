@@ -12,34 +12,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <div class="draggable" id="draggable1">
-    <div id="draggableHeader1">To do list</div>
-    <input type="text" placeholder="Add Item...">
-    <button onclick="addItem('draggable1')">Add</button>
-    <ul id="listOfItems1"></ul>
-</div>
-
-<div class="draggable" id="draggable2">
-    <div id="draggableHeader2">To do list</div>
-    <input type="text" placeholder="Add Item...">
-    <button onclick="addItem('draggable2')">Add</button>
-    <ul id="listOfItems2"></ul>
-</div>
-
-<div class="draggable" id="draggable3">
-    <div id="draggableHeader3">To do list</div>
-    <input type="text" placeholder="Add Item...">
-    <button onclick="addItem('draggable3')">Add</button>
-    <ul id="listOfItems3"></ul>
-</div>
-
-<div class="draggable" id="draggable4">
-    <div id="draggableHeader4">To do list</div>
-    <input type="text" placeholder="Add Item...">
-    <button onclick="addItem('draggable4')">Add</button>
-    <ul id="listOfItems4"></ul>
-</div>
-
+  <div id="lists-container" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+  <button class="add-list-button" onclick="addList()">Add List</button>
+  
 <script src="js/main.js"></script>
 </body>
 </html>

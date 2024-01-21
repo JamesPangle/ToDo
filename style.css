@@ -12,53 +12,62 @@
         height: 100vh;
         background: -webkit-linear-gradient(90deg, rgb(255, 0, 0) 10%, #6f00ff 90%);
      }
- 
-  .draggable {
-      position: absolute;
-      z-index: 9;
-      background-color: #f1f1f1;
-      text-align: center;
-      border: 1px solid #ddd;
-      padding: 10px;
-      cursor: move;
-  }
+     #lists-container {
+        display: flex;
+        gap: 20px;
+    }
 
-  .draggable-header {
-      padding: 10px;
-      cursor: move;
-      background-color: #ddd;
-      
-  }
+    .list {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        width: 200px;
+        background-color: #f9f9f9;
+        cursor: move;
+    }
 
-  .draggable-content {
-      margin-top: 20px;
-  }
+    .list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
 
-  /* Different colors for each draggable element */
-  #draggable1 {
-      left: 10px;
-      top: 10px;
-      background-color: #77ff00;
-      border: 2px solid #d6ffb3;
-  }
+    .list-items {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-  #draggable2 {
-      left: 10px;
-      top: 10px;
-      background-color: #2196F3;
-      border: 2px solid #97cffd;
-  }
+    .list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 4px;
+        cursor: pointer;
+    }
 
-  #draggable3 {
-      left: 10px;
-      top: 10px;
-      background-color: #ff0000;
-      border: 2px solid #fdaeae;
-  }
+    .list-item.completed {
+        background-color: #d3ffd3;
+        text-decoration: line-through;
+    }
 
-  #draggable4 {
-      left: 10px;
-      top: 10px;
-      background-color: #ff7300;
-      border: 2px solid #ffb170;
-  }
+    .list-item input {
+        margin-right: 8px;
+    }
+
+    .add-list-button {
+        padding: 8px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .add-item-container {
+        margin-top: 10px;
+    }
