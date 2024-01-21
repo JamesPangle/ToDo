@@ -21,18 +21,7 @@
   .list {
       border: 1px solid #ccc;
       border-radius: 8px;
-  }.draggable {
-      position: absolute;
-      z-index: 9;
-      background-color: #f1f1f1;
-      text-align: center;
-      border: 1px solid #ddd;
-      padding: 10px;
-      width: 200px;
-      background-color: #f9f9f9;
-      cursor: move;
   }
-
   .list-header {
       display: flex;
       justify-content: space-between;
@@ -76,3 +65,6 @@
       cursor: pointer;
 
   }
+  .add-item-container {
+    margin-top: 10px;
+}
