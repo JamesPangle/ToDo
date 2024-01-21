@@ -12,7 +12,7 @@
         height: 100vh;
         background: -webkit-linear-gradient(90deg, rgb(255, 0, 0) 10%, #6f00ff 90%);
      }
-<<<<<<< HEAD
+
      #lists-container {
       display: flex;
       gap: 20px;
@@ -21,22 +21,18 @@
   .list {
       border: 1px solid #ccc;
       border-radius: 8px;
-=======
- 
-  .draggable {
+  }.draggable {
       position: absolute;
       z-index: 9;
       background-color: #f1f1f1;
       text-align: center;
       border: 1px solid #ddd;
->>>>>>> d2084180f5ecd9e29b446a06feb1fa5d86f2afc7
       padding: 10px;
       width: 200px;
       background-color: #f9f9f9;
       cursor: move;
   }
 
-<<<<<<< HEAD
   .list-header {
       display: flex;
       justify-content: space-between;
@@ -78,44 +74,5 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
-=======
-  .draggable-header {
-      padding: 10px;
-      cursor: move;
-      background-color: #ddd;
-      
-  }
 
-  .draggable-content {
-      margin-top: 20px;
-  }
-
-  /* Different colors for each draggable element */
-  #draggable1 {
-      left: 10px;
-      top: 10px;
-      background-color: #77ff00;
-      border: 2px solid #d6ffb3;
-  }
-
-  #draggable2 {
-      left: 10px;
-      top: 10px;
-      background-color: #2196F3;
-      border: 2px solid #97cffd;
-  }
-
-  #draggable3 {
-      left: 10px;
-      top: 10px;
-      background-color: #ff0000;
-      border: 2px solid #fdaeae;
-  }
-
-  #draggable4 {
-      left: 10px;
-      top: 10px;
-      background-color: #ff7300;
-      border: 2px solid #ffb170;
->>>>>>> d2084180f5ecd9e29b446a06feb1fa5d86f2afc7
   }
