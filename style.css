@@ -12,40 +12,33 @@
         height: 100vh;
         background: -webkit-linear-gradient(90deg, rgb(255, 0, 0) 10%, #6f00ff 90%);
      }
- 
      #lists-container {
         display: flex;
         gap: 20px;
     }
-  
+
     .list {
         border: 1px solid #ccc;
         border-radius: 8px;
-    }.draggable {
-        position: absolute;
-        z-index: 9;
-        background-color: #f1f1f1;
-        text-align: center;
-        border: 1px solid #ddd;
         padding: 10px;
         width: 200px;
         background-color: #f9f9f9;
         cursor: move;
     }
-  
+
     .list-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 8px;
     }
-  
+
     .list-items {
         list-style: none;
         padding: 0;
         margin: 0;
     }
-  
+
     .list-item {
         display: flex;
         align-items: center;
@@ -56,17 +49,16 @@
         margin-bottom: 4px;
         cursor: pointer;
     }
-  
+
     .list-item.completed {
         background-color: #d3ffd3;
         text-decoration: line-through;
     }
-  
-  
+
     .list-item input {
         margin-right: 8px;
     }
-  
+
     .add-list-button {
         padding: 8px;
         background-color: #4caf50;
@@ -74,5 +66,8 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-  
+    }
+
+    .add-item-container {
+        margin-top: 10px;
     }
