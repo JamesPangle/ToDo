@@ -1,6 +1,5 @@
-from datetime import datetime
 class Item:
-    def __init__(self,itemId: int,listId: int,desc: str,due:datetime,completed: bool):
+    def __init__(self,itemId: int,listId: int,desc: str,due:str,completed: bool):
         if itemId is None:
             self.itemId = -1
         else:    
@@ -22,7 +21,7 @@ class Item:
     def getDesc(self) -> str:
         return self.desc
     
-    def getDue(self) -> datetime:
+    def getDue(self) -> str:
         return self.due
             
     def getCompleted(self):
@@ -42,3 +41,9 @@ class Item:
             
     def setCompleted(self, comp):
         self.completed = comp
+        
+    def __str__(self) -> str:
+        if self.due is None or self.completed:
+            return f"{self.itemId}: {self.desc} | {self.completed}"
+        else:
+            return f"{self.itemId}: {self.desc} | {self.completed} | Due: {self.due}"

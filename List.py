@@ -24,18 +24,22 @@ class List:
         
     def addItem(self, item: Item):
         self.items.append(item)
-        print(f"Added an item to {self.getName}.\n")
         
     def removeItem(self, item: Item):
         ind = -1
         for i in range(len(self.items)):
-            if item.getItemId() == self.items[i].getItemId():
+            if item.getItemId() == self.items[i].getItemId() or item.getDesc() == self.items[i].getDesc():
                 ind = i
                 break
         if ind != -1:
             self.items.pop(ind)
-            print(f"Removed an item from {self.getName}.\n")
     
     def setItem(self, items: list[Item]):
         self.items = items
+        
+    def __str__(self) -> str:
+        string = f"({self.id}){self.name}:"
+        for i in self.items:
+            string += f"\n\t|-> {str(i)}"
+        return string
             
