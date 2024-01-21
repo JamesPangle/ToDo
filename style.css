@@ -17,6 +17,11 @@
         gap: 20px;
     }
 
+    #lists-container {
+        display: flex;
+        gap: 20px;
+    }
+
     .list {
         border: 1px solid #ccc;
         border-radius: 8px;
@@ -66,8 +71,4 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-    }
-
-    .add-item-container {
-        margin-top: 10px;
     }
