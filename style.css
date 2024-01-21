@@ -12,40 +12,62 @@
         height: 100vh;
         background: -webkit-linear-gradient(90deg, rgb(255, 0, 0) 10%, #6f00ff 90%);
      }
-     .container {
-      display: flex;
+     #lists-container {
+        display: flex;
+        gap: 20px;
     }
 
     .list {
-      border: 1px solid #ccc;
-      margin: 10px;
-      padding: 10px;
-      width: 200px;
-      min-height: 100px;
-      background-color: #f9f9f9;
-      border-radius: 5px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        width: 200px;
+        background-color: #f9f9f9;
+        cursor: move;
     }
 
-    .item {
-      cursor: grab;
-      margin: 5px 0;
-      padding: 5px;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      background-color: #fff;
+    .list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
     }
 
-    .item.completed {
-      text-decoration: line-through;
-      background-color: #e0e0e0;
+    .list-items {
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
 
-    .add-button {
-      margin-top: 10px;
-      padding: 5px;
-      cursor: pointer;
-      background-color: #4caf50;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
+    .list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 4px;
+        cursor: pointer;
+    }
+
+    .list-item.completed {
+        background-color: #d3ffd3;
+        text-decoration: line-through;
+    }
+
+    .list-item input {
+        margin-right: 8px;
+    }
+
+    .add-list-button {
+        padding: 8px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .add-item-container {
+        margin-top: 10px;
     }

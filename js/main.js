@@ -1,67 +1,111 @@
-$(".draggable").draggable();
+let listCounter = 1;
 
-function addItem(draggableId) {
-    var inputField = $("#" + draggableId + " input");
-    var actualItem = inputField.val();
-
-    if (actualItem.length !== 0) {
-        var createAnHTMLList = `<li>${actualItem} <button onclick="removeItem(this, '${draggableId}')">Remove</button></li>`;
-        var itemList = $("#" + draggableId + " ul");
-        itemList.append(createAnHTMLList);
-        inputField.val('');
+    function allowDrop(event) {
+        event.preventDefault();
     }
-}
 
-function removeItem(button, draggableId) {
-    $(button).closest("li").remove();
-}
-var givenName = document.querySelector('#name')
-var btnClass = document.querySelector('#addItem')
-var listOfItems = document.querySelector('#listOfItems')
+    function drop(event) {
+        event.preventDefault();
+        const data = event.dataTransfer.getData("text");
+        const draggedElement = document.getElementById(data);
+        const listsContainer = document.getElementById('lists-container');
+        listsContainer.appendChild(draggedElement);
+    }
 
-dragElement(document.getElementById("mydiv"));
-dragElement(document.getElementById("mydiv2"));
-dragElement(document.getElementById("mydiv3"));
-dragElement(document.getElementById("mydiv4"));
+    function addList() {
+        const listsContainer = document.getElementById('lists-container');
 
-   function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    /* if present, the header is where you move the DIV from:*/
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    /* otherwise, move the DIV from anywhere inside the DIV:*/
-    elmnt.onmousedown = dragMouseDown;
-  }
+        const listContainer = document.createElement('div');
+        listContainer.classList.add('list');
+        listContainer.setAttribute('id', 'list-' + listCounter);
+        listContainer.setAttribute('draggable', true);
+        listContainer.ondragstart = function (event) {
+            event.dataTransfer.setData("text", event.target.id);
+        };
 
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
+        const listHeader = document.createElement('div');
+        listHeader.classList.add('list-header');
 
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
+        const listTitle = document.createElement('span');
+        listTitle.textContent = 'List ' + listCounter;
 
-  function closeDragElement() {
-    /* stop moving when mouse button is released:*/
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function () {
+            listsContainer.removeChild(listContainer);
+        };
 
+        listHeader.appendChild(listTitle);
+        listHeader.appendChild(deleteButton);
+
+        const listItems = document.createElement('ul');
+        listItems.classList.add('list-items');
+
+        const addItemContainer = document.createElement('div');
+        addItemContainer.classList.add('add-item-container');
+
+        const addItemInput = document.createElement('input');
+        addItemInput.type = 'text';
+
+        const addItemButton = document.createElement('button');
+        addItemButton.textContent = 'Add Item';
+        addItemButton.onclick = function () {
+            addItem('list-' + listCounter);
+        };
+
+        addItemContainer.appendChild(addItemInput);
+        addItemContainer.appendChild(addItemButton);
+
+        listContainer.appendChild(listHeader);
+        listContainer.appendChild(listItems);
+        listContainer.appendChild(addItemContainer);
+
+        listsContainer.appendChild(listContainer);
+
+        listCounter++;
+    }
+
+    function addItem(listId) {
+        const listItems = document.getElementById(listId).getElementsByClassName('list-items')[0];
+
+        const listItem = document.createElement('li');
+        listItem.classList.add('list-item');
+
+        const input = document.createElement('input');
+        input.type = 'text';
+
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.onclick = function () {
+            toggleEdit(itemText, input, editButton, listItem);
+        };
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function () {
+            listItems.removeChild(listItem);
+        };
+
+        listItem.appendChild(input);
+        listItem.appendChild(editButton);
+        listItem.appendChild(deleteButton);
+
+        listItems.appendChild(listItem);
+    }
+
+    function toggleEdit(itemText, input, editButton, listItem) {
+        if (input.disabled) {
+            input.disabled = false;
+            input.focus();
+            editButton.textContent = 'Save';
+        } else {
+            input.disabled = true;
+            editButton.textContent = 'Edit';
+            itemText.textContent = input.value;
+            listItem.classList.toggle('completed');
+        }
+    }
+
+    function markCompleted(listItem) {
+        listItem.classList.toggle('completed');
+    }
