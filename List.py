@@ -28,7 +28,7 @@ class List:
     def removeItem(self, item: Item):
         ind = -1
         for i in range(len(self.items)):
-            if item.getItemId() == self.items[i].getItemId():
+            if item.getItemId() == self.items[i].getItemId() or item.getDesc() == self.items[i].getDesc():
                 ind = i
                 break
         if ind != -1:
