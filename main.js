@@ -1,45 +1,34 @@
-function allowDrop(event) {
-  event.preventDefault();
-}
-
-function drop(event) {
-  event.preventDefault();
-  var data = event.dataTransfer.getData("text");
-  var draggedElement = document.getElementById(data);
-  event.target.appendChild(draggedElement);
-}
+let listCounter = 1;
 
 function addList() {
-  
-  var listName = prompt("Enter list name:");
-  if (listName) {
-    var newList = document.createElement("div");
-    newList.className = "list";
-    newList.id = "list-" + Date.now(); // Assign a unique ID to the list
-    newList.draggable = true;
-    newList.ondragstart = function(event) {
-      event.dataTransfer.setData("text", event.target.id);
+    const listsContainer = document.getElementById('lists-container');
+
+    const listContainer = document.createElement('div');
+    listContainer.classList.add('list');
+    listContainer.setAttribute('id', 'list-' + listCounter);
+
+    const listHeader = document.createElement('div');
+    listHeader.classList.add('list-header');
+
+    const listTitle = document.createElement('span');
+    listTitle.textContent = 'List ' + listCounter;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.onclick = function () {
+        listsContainer.removeChild(listContainer);
     };
 
-    var listTitle = document.createElement("h3");
-    listTitle.textContent = listName;
-    newList.appendChild(listTitle);
+    listHeader.appendChild(listTitle);
+    listHeader.appendChild(deleteButton);
 
-    var addItemButton = document.createElement("button");
-    addItemButton.textContent = "Add Item";
-    addItemButton.onclick = function() {
-      var itemName = prompt("Enter item name:");
-      if (itemName) {
-        var newItem = document.createElement("div");
-        newItem.textContent = itemName;
-        newList.appendChild(newItem);
-      }
-    };
+    const listItems = document.createElement('ul');
+    listItems.classList.add('list-items');
 
-    newList.appendChild(addItemButton);
+    listContainer.appendChild(listHeader);
+    listContainer.appendChild(listItems);
 
-    document.getElementById("lists-container").appendChild(newList);
-  }
+    listsContainer.appendChild(listContainer);
+
+    listCounter++;
 }
-var givenName = document.querySelector('#name')
-var btnClass = document.querySelector('#addItem')
