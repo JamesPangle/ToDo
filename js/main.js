@@ -14,11 +14,13 @@ function drop(event) {
 
 function addList() {
     const listsContainer = document.getElementById('lists-container');
-
     const listContainer = document.createElement('div');
     listContainer.classList.add('list');
     listContainer.setAttribute('id', 'list-' + listCounter);
     listContainer.setAttribute('draggable', true);
+
+    $(listContainer).draggable();
+
     listContainer.ondragstart = function (event) {
         event.dataTransfer.setData("text", event.target.id);
     };
@@ -29,6 +31,12 @@ function addList() {
     const listTitle = document.createElement('span');
     listTitle.textContent = 'List ' + listCounter;
 
+    const renameButton = document.createElement('button');
+    renameButton.textContent = 'Rename';
+    renameButton.onclick = function () {
+        renameList(listContainer);
+    };
+
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.onclick = function () {
@@ -36,6 +44,7 @@ function addList() {
     };
 
     listHeader.appendChild(listTitle);
+    listHeader.appendChild(renameButton);
     listHeader.appendChild(deleteButton);
 
     const listItems = document.createElement('ul');
@@ -62,11 +71,23 @@ function addList() {
     listCounter++;
 }
 
+function renameList(listContainer) {
+    const listHeader = listContainer.querySelector('.list-header');
+    const listTitle = listHeader.querySelector('span');
+    const newName = prompt('Enter new name for the list:', listTitle.textContent);
+    if (newName !== null) {
+        listTitle.textContent = newName;
+    }
+}
 function addItem(listId, itemText) {
     const listItems = document.getElementById(listId).getElementsByClassName('list-items')[0];
 
     const listItem = document.createElement('li');
     listItem.classList.add('list-item');
+    listItem.setAttribute('draggable', true);
+    listItem.ondragstart = function (event) {
+        event.dataTransfer.setData("text", event.target.id);
+    };
 
     const input = document.createElement('input');
     input.type = 'text';
