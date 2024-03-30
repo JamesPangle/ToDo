@@ -13,11 +13,13 @@ def removeItem(listing1: List, item: Item) -> str:    #Remove an item from the l
                     listing.removeItem(i)
                     return f"Removed item from {listing.getName()}."
             return f"Error: could not find \"{item.getDesc()}\" in {listing.getName()}."
-    return f"Error: No such item exists in this list."
+    return f"Error: no such item exists in this list."
 
 def removeList(listing: List) -> str:     #Remove a List
     for i in range(len(importedList)):
         if importedList[i].getName() == listing.getName():
+            for m in importedList[i].getItems():
+                db.deleteItem(importedList[i],m)
             db.deleteList(importedList[i])
             importedList.pop(i)
             return f"Removed List {listing.getName()}"
@@ -26,7 +28,7 @@ def removeList(listing: List) -> str:     #Remove a List
 def addList(listing: List) -> str:    #make a new list
     for i in importedList:
         if i.getName() == listing.getName():
-            return f"Error: list {listing.getName()} already Exists."
+            return f"Error: list {listing.getName()} already exists."
     x = db.addList(listing)
     listing.setId(x)
     importedList.append(listing)
@@ -48,7 +50,7 @@ def addItem(item: Item) -> str:    #add an item to a list
 def editItem(listing: List,fro: Item, to: Item) -> str:    #Edit an item in a list
     x = 0
     tracker = -1
-    item1 = Item(-1,-1,"","",False)
+    #item1 = Item(-1,-1,"","",False)
     for check in importedList:
         for items in check.getItems():
             if check.getId() == to.getListId() and items.getDesc() == to.getDesc():
@@ -68,7 +70,7 @@ def editItem(listing: List,fro: Item, to: Item) -> str:    #Edit an item in a li
                     tracker = i
                     break
                 elif i == len(importedList) - 1:
-                    return f"Error: Item not found in list."
+                    return f"Error: item not found in list."
     if tracker >= 0:
         db.editItem(item1)
         importedList[tracker].removeItem(fro)
@@ -88,7 +90,13 @@ def editList(fro: List, to: List) -> str:     #Edit a list
             db.editList(i)
             return f"List's name has been changed."
     return f"Error: No such list with the name \"{fro.getName()}\"."
-                
+
+def getListId(name:str) -> str:
+    for listing in importedList:
+        if listing.getName() == name:
+            return str(listing.getId())
+    return f"Error: No listing named {name}."
+
 def listAllLists():
     print("----------------List of TODOs------------------")
     for i in importedList:
@@ -97,14 +105,14 @@ def listAllLists():
 
 importedList = db.start() 
 listAllLists()
-print(addList(List(0,"test1")))
-print(addItem(Item(0,1,"test desc1", "1/1/2024",False)))
+print(addList(List(0, "test1")))
+print(addItem(Item(0,int(getListId("test1")),"test desc1", "1/1/2024",False)))
 listAllLists()
-print(editItem(List(1,"test1"),Item(0,1,"test desc1", "", True), Item(0,1,"test desc2", "1/1/2024", True)))
-print(editList(List(1, "test1"), List(0, "test2")))
+print(editItem(List(0, "test1"),Item(0,int(getListId("test1")),"test desc1", "", True), Item(0,int(getListId("test1")),"test desc2", "1/1/2024", True)))
+print(editList(List(0, "test1"), List(0, "test2")))
 listAllLists()
-print(removeItem(List(0,"test2"),Item(0,1,"test desc2", "1/1/2024", True)))
+print(removeItem(List(0, "test2"),Item(0,int(getListId("test2")),"test desc2", "1/1/2024", True)))
 listAllLists()
-print(removeList(List(0,"test2")))
+print(removeList(List(0, "test2")))
 listAllLists()
 db.close()
