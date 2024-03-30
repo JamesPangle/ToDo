@@ -9,7 +9,7 @@ CREATE TABLE if not exists lists (
 CREATE TABLE if not exists items (
     item_id SERIAL PRIMARY KEY,
     list_id INTEGER REFERENCES Lists(id),
-    descr TEXT NOT NULL,
+    descr TEXT UNIQUE NOT NULL,
     due DATE,
     completed BOOLEAN DEFAULT FALSE
 );

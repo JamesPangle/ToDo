@@ -1,8 +1,9 @@
 from Item import Item
 from List import List
-import backend.db as db
+import db
 
 importedList: list[List] = []
+importedList = db.start()
 
 def removeItem(listing1: List, item: Item) -> str:    #Remove an item from the list
     for listing in importedList:
@@ -97,22 +98,19 @@ def getListId(name:str) -> str:
             return str(listing.getId())
     return f"Error: No listing named {name}."
 
+def getAllLists() -> list[List]:
+    return importedList
+
+def getAllItems() -> list[Item]:
+    listoItems = []
+    for l in importedList:
+        for i in l.getItems():
+            listoItems.append(i)
+    return listoItems
+        
+
 def listAllLists():
     print("----------------List of TODOs------------------")
     for i in importedList:
         print(i)
     print("-----------------------------------------------")
-
-importedList = db.start() 
-listAllLists()
-print(addList(List(0, "test1")))
-print(addItem(Item(0,int(getListId("test1")),"test desc1", "1/1/2024",False)))
-listAllLists()
-print(editItem(List(0, "test1"),Item(0,int(getListId("test1")),"test desc1", "", True), Item(0,int(getListId("test1")),"test desc2", "1/1/2024", True)))
-print(editList(List(0, "test1"), List(0, "test2")))
-listAllLists()
-print(removeItem(List(0, "test2"),Item(0,int(getListId("test2")),"test desc2", "1/1/2024", True)))
-listAllLists()
-print(removeList(List(0, "test2")))
-listAllLists()
-db.close()

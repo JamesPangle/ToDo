@@ -42,6 +42,15 @@ class Item:
     def setCompleted(self, comp):
         self.completed = comp
         
+    def toJson(self):
+        return {
+            "itemId":self.itemId,
+            "listId":self.listId,
+            "desc": self.desc,
+            "due": self.due,
+            "completed": self.completed
+        }
+        
     def __str__(self) -> str:
         if self.due is None or self.completed:
             return f"{self.itemId}: {self.desc} | {self.completed}"

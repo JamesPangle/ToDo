@@ -37,6 +37,13 @@ class List:
     def setItem(self, items: list[Item]):
         self.items = items
         
+    def toJson(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "items": [i.toJson() for i in self.items]
+        }
+        
     def __str__(self) -> str:
         string = f"({self.id}){self.name}:"
         for i in self.items:
