@@ -1,6 +1,6 @@
 from Item import Item
 from List import List
-import db
+import backend.db as db
 
 importedList: list[List] = []
 

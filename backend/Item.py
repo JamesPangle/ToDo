@@ -1,5 +1,5 @@
 class Item:
-    def __init__(self,itemId: int,listId: int,desc: str,due:str,completed: bool):
+    def __init__(self,itemId: int,listId: int,desc: str,due:str,completed = None):
         if itemId is None:
             self.itemId = -1
         else:    
