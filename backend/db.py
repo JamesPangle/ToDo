@@ -3,29 +3,32 @@ from Item import Item
 from List import List
 
 def start() -> list:    #  Connect to Database
-    global db
-    db = psy.connect(database = "todo", 
+    combined:list[List] = []
+    try:
+        global db
+        db = psy.connect(database = "todo", 
                         user = "postgres", 
                        host= 'localhost',
                        password = "killa4eva",
                        port = 5432)
-    db.autocommit = True
-    global cur
-    combined:list[List] = []
-    cur = db.cursor()
+        db.autocommit = True
+        global cur
+        cur = db.cursor()
     
                                     #Put items from database into list
-    cur.execute("SELECT * FROM lists;")
-    importedList = cur.fetchall()
-    for listing in importedList:
-        combined.append(List(listing[0],listing[1]))
-    cur.execute("SELECT * FROM items;")
-    importedItems = cur.fetchall()
-    for item in importedItems:
-        for listing in combined:
-            if item[1] == listing.getId():
-                listing.addItem(Item(item[0], item[1], item[2], item[3], item[4]))
-    return combined
+        cur.execute("SELECT * FROM lists;")
+        importedList = cur.fetchall()
+        for listing in importedList:
+            combined.append(List(listing[0],listing[1]))
+        cur.execute("SELECT * FROM items;")
+        importedItems = cur.fetchall()
+        for item in importedItems:
+            for listing in combined:
+                if item[1] == listing.getId():
+                    listing.addItem(Item(item[0], item[1], item[2], item[3], item[4]))
+    finally:
+        return combined
+    
 def addItem(item: Item) -> int:          #Add an Item to the database
     cur.execute("INSERT INTO items (list_id,descr,due,completed) VALUES (%s,%s,%s,%s) RETURNING item_id;",(item.getListId(),item.getDesc(), item.getDue(), item.getCompleted()))
     out = cur.fetchall()[0][0]

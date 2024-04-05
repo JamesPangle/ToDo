@@ -2,15 +2,18 @@ from Item import Item
 from List import List
 import db
 
+
 importedList: list[List] = []
 importedList = db.start()
+hasdb = False if importedList == [] else True
 
 def removeItem(listing1: List, item: Item) -> str:    #Remove an item from the list
     for listing in importedList:
         if listing1.getName() == listing.getName():
             for i in listing.getItems():
                 if i.getItemId() == item.getItemId() or i.getDesc() == item.getDesc():
-                    db.deleteItem(listing,i)
+                    if hasdb:
+                        db.deleteItem(listing,i)
                     listing.removeItem(i)
                     return f"Removed item from {listing.getName()}."
             return f"Error: could not find \"{item.getDesc()}\" in {listing.getName()}."
@@ -20,8 +23,10 @@ def removeList(listing: List) -> str:     #Remove a List
     for i in range(len(importedList)):
         if importedList[i].getName() == listing.getName():
             for m in importedList[i].getItems():
-                db.deleteItem(importedList[i],m)
-            db.deleteList(importedList[i])
+                if hasdb:
+                    db.deleteItem(importedList[i],m)
+            if hasdb:
+                db.deleteList(importedList[i])
             importedList.pop(i)
             return f"Removed List {listing.getName()}"
     return f"Error: list {listing.getName()} hasn't been made."
@@ -30,9 +35,14 @@ def addList(listing: List) -> str:    #make a new list
     for i in importedList:
         if i.getName() == listing.getName():
             return f"Error: list {listing.getName()} already exists."
-    x = db.addList(listing)
-    listing.setId(x)
-    importedList.append(listing)
+    if hasdb:
+        x = db.addList(listing)
+        listing.setId(x)
+        importedList.append(listing)
+    else:
+        importedList.append(listing)
+        importedList[-1].setId(len(importedList))
+    
     return f"Added the list \"{listing.getName()}\"."
     
 def addItem(item: Item) -> str:    #add an item to a list
@@ -41,9 +51,13 @@ def addItem(item: Item) -> str:    #add an item to a list
             for j in importedList[i].getItems():
                 if j.getDesc() == item.getDesc():
                     return f"Error: item already in this list."
-            x = db.addItem(item)
-            item.setItemId(x)
-            importedList[i].addItem(item)
+            if hasdb:    
+                x = db.addItem(item)
+                item.setItemId(x)
+                importedList[i].addItem(item)
+            else:
+                importedList[i].addItem(item)
+                importedList[-1].getItems()[-1].setItemId(len(importedList[-1].getItems()))
             return f"Added item to {[i.getName() for i in importedList if i.getId() == item.getListId()][0]}"
     return f"Error: the list for this item doesn't exist."
     
@@ -73,7 +87,8 @@ def editItem(listing: List,fro: Item, to: Item) -> str:    #Edit an item in a li
                 elif i == len(importedList) - 1:
                     return f"Error: item not found in list."
     if tracker >= 0:
-        db.editItem(item1)
+        if hasdb:
+            db.editItem(item1)
         importedList[tracker].removeItem(fro)
         importedList[x].addItem(to)
         return "Item has been edited."
@@ -88,7 +103,8 @@ def editList(fro: List, to: List) -> str:     #Edit a list
     for i in importedList:
         if i.getId() == fro.getId() or i.getName() == fro.getName():
             i.setName(to.getName())
-            db.editList(i)
+            if hasdb:
+                db.editList(i)
             return f"List's name has been changed."
     return f"Error: No such list with the name \"{fro.getName()}\"."
 

@@ -21,10 +21,13 @@ def getItems():
         listoItems.append(i.toJson())
     return jsonify(listoItems)
     
-@app.route("/lists/<listId>", methods=["GET", "POST", "DELETE"])
-def maniList():                         #Need to finish
+@app.route("/lists/<int:listId>", methods=["GET", "POST", "DELETE"])
+def maniList(listId):                         #Need to finish
     match request.method:
         case "GET":
+            for l in back.getAllLists():
+                if l.getId == listId:
+                    return jsonify(l.toJson())
             return []
         case "POST":
             return []
@@ -33,7 +36,7 @@ def maniList():                         #Need to finish
         case _:
             return []
         
-@app.route("/items/<itemId>", methods=["GET", "POST", "DELETE"])
+@app.route("/items/<int:itemId>", methods=["GET", "POST", "DELETE"])
 def maniItem():                         #Need to finish
     match request.method:
         case "GET":
