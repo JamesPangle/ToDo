@@ -1,5 +1,8 @@
+from datetime import date
+
+
 class Item:
-    def __init__(self,itemId: int,listId: int,desc: str,due:str,completed = None):
+    def __init__(self,itemId: int,listId: int,desc: str,due: str = "No Due Date",completed:bool = False):
         if itemId is None:
             self.itemId = -1
         else:    
@@ -7,10 +10,7 @@ class Item:
         self.listId = listId
         self.desc = desc
         self.due = due
-        if completed is None:
-            self.completed = False
-        else:
-            self.completed = completed
+        self.completed = completed
         
     def getItemId(self) -> int:
         return self.itemId
@@ -52,7 +52,7 @@ class Item:
         }
         
     def __str__(self) -> str:
-        if self.due is None or self.completed:
+        if self.due == "No Due Date" or self.completed:
             return f"{self.itemId}: {self.desc} | {self.completed}"
         else:
             return f"{self.itemId}: {self.desc} | {self.completed} | Due: {self.due}"

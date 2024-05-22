@@ -26,26 +26,37 @@ def maniList(listId):                         #Need to finish
     match request.method:
         case "GET":
             for l in back.getAllLists():
-                if l.getId == listId:
+                if l.getId() == listId:
                     return jsonify(l.toJson())
-            return []
+            return jsonify({"Response":"List not found"})
         case "POST":
             return []
         case "DELETE":
-            return []
+            for l in back.getAllLists():
+                if l.getId() == listId:
+                    back.removeList(listId)
+                    return jsonify({"Response":"List Removed"})
+            return jsonify({"Response":"List not found"})
         case _:
             return []
         
 @app.route("/items/<int:itemId>", methods=["GET", "POST", "DELETE"])
-def maniItem():                         #Need to finish
+def maniItem(itemId):                         #Need to finish
     match request.method:
         case "GET":
-            return []
+            for l in back.getAllItems():
+                if l.getItemId() == itemId:
+                    return jsonify(l.toJson())
+            return jsonify({"Response":"Item not found"})
         case "POST":
             data = request.form
             return []
         case "DELETE":
-            return []
+            for l in back.getAllItems():
+                if l.getItemId() == itemId:
+                    back.removeItem(itemId)
+                    return jsonify({"Response":"Item Removed"})
+            return jsonify({"Response":"Item not found"})
         case _:
             return []
     

@@ -25,10 +25,10 @@ class List:
     def addItem(self, item: Item):
         self.items.append(item)
         
-    def removeItem(self, item: Item):
+    def removeItem(self, id: int):
         ind = -1
         for i in range(len(self.items)):
-            if item.getItemId() == self.items[i].getItemId() or item.getDesc() == self.items[i].getDesc():
+            if id == self.items[i].getItemId():
                 ind = i
                 break
         if ind != -1:
